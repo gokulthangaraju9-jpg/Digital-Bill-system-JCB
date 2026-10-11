@@ -6,6 +6,7 @@
     "server": "node jcb-platform/backend/server.js",
     "start": "npm run server & npm run dev",
     "install-all": "npm install --prefix jcb-platform",
+    "build": "npm run build --prefix jcb-platform",
     "build-platform": "npm run build --prefix jcb-platform",
     "install-netlify": "npm install --save-dev netlify-cli",
     "netlify-status": "npx netlify status",

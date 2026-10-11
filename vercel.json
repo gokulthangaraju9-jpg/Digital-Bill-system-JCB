@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm run build --prefix jcb-platform",
+  "outputDirectory": "jcb-platform/dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
