@@ -1,4 +1,5 @@
 {
+  "installCommand": "npm install --prefix jcb-platform",
   "buildCommand": "npm run build --prefix jcb-platform",
   "outputDirectory": "jcb-platform/dist",
   "framework": "vite",

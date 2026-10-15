@@ -1,6 +1,9 @@
 {
   "name": "jcb-root",
   "private": true,
+  "workspaces": [
+    "jcb-platform"
+  ],
   "scripts": {
     "dev": "npm run dev --prefix jcb-platform",
     "server": "node jcb-platform/backend/server.js",
