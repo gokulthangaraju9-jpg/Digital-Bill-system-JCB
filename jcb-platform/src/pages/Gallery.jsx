@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Image as ImageIcon, ZoomIn, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import ConstructionBgAnimation from '../components/ConstructionBgAnimation';
@@ -175,6 +175,30 @@ export default function Gallery({ isEmbedded = false }) {
       </section>
 
       <main style={{ maxWidth: 1260, margin: '0 auto', padding: '64px 32px' }}>
+
+        {/* ── FILTER BUTTONS ── */}
+        <div style={{ display: 'flex', gap: 12, marginBottom: 36, flexWrap: 'wrap', justifyContent: 'center' }}>
+          {FILTERS.map(f => (
+            <button
+              key={f}
+              onClick={() => setActiveFilter(f)}
+              className="filter-btn"
+              style={{
+                padding: '9px 20px',
+                borderRadius: 99,
+                fontSize: 13,
+                fontWeight: 700,
+                cursor: 'pointer',
+                background: activeFilter === f ? '#FBC518' : 'rgba(255,255,255,0.06)',
+                color: activeFilter === f ? '#000' : 'rgba(255,255,255,0.7)',
+                border: activeFilter === f ? '1px solid #FBC518' : '1px solid rgba(255,255,255,0.12)',
+                boxShadow: activeFilter === f ? '0 4px 16px rgba(251,197,24,0.3)' : 'none',
+              }}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
 
         {/* ── GRID ── */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(340px,1fr))', gap: 28 }}>

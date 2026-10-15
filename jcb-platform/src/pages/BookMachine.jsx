@@ -6,7 +6,7 @@ import { ArrowLeft } from 'lucide-react';
 const BookMachine = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { userData, user, setUserData } = useAuth();
+  const { userData, setUserData } = useAuth();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 

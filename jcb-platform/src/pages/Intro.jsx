@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { LayoutGrid, Calculator, Truck, Play, Image as ImageIcon, X } from 'lucide-react';
 
 import AboutUs from './AboutUs';
@@ -26,7 +25,6 @@ const features = [
 ];
 
 export default function Intro() {
-  const { userData, isAdmin } = useAuth();
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoDuration, setVideoDuration] = useState('00:10');

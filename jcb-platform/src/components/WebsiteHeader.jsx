@@ -1,25 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, ArrowUpRight, ChevronDown } from 'lucide-react';
+import { Menu, ArrowUpRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function WebsiteHeader() {
   const navigate = useNavigate();
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [contactInfo, setContactInfo] = useState({ phone: '+91 9842140010', phone2: '+91 9865574700', email: 'info@sribalajiearthmovers.com' });
   const [activeSection, setActiveSection] = useState('home');
-
-  useEffect(() => {
-    // Attempt to fetch from backend, but fallback to defaults on error
-    fetch('http://localhost:5000/api/public/contact')
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.phone && data.email) {
-          setContactInfo(data);
-        }
-      })
-      .catch(err => console.error('Failed to load contact info:', err));
-  }, []);
 
   const [isScrolled, setIsScrolled] = useState(false);
 

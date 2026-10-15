@@ -2,13 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const stats = [
-  { label: 'Active Bookings', value: '0', icon: '🚜', color: '#FBC518' },
-  { label: 'Total Bookings', value: '0', icon: '📋', color: '#22c55e' },
-  { label: 'Pending', value: '0', icon: '⏳', color: '#f97316' },
-  { label: 'Completed', value: '0', icon: '✅', color: '#3b82f6' },
-];
-
 export default function Dashboard() {
   const { user, userData } = useAuth();
   const navigate = useNavigate();
@@ -31,17 +24,6 @@ export default function Dashboard() {
     };
     fetchBookings();
   }, []);
-
-  const getStats = () => {
-    const total = bookings.length;
-    const pending = bookings.filter(b => b.status === 'Pending').length;
-    return [
-      { label: 'Active Bookings', value: total.toString(), icon: '🚜', color: '#FBC518' },
-      { label: 'Total Bookings', value: total.toString(), icon: '📋', color: '#22c55e' },
-      { label: 'Pending', value: pending.toString(), icon: '⏳', color: '#f97316' },
-      { label: 'Completed', value: '0', icon: '✅', color: '#3b82f6' },
-    ];
-  };
 
   return (
     <div style={{
@@ -131,7 +113,12 @@ export default function Dashboard() {
           <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 24, display: 'flex', alignItems: 'center', gap: 10 }}>
             <span style={{ fontSize: 24 }}>📋</span> Recent Bookings
           </h2>
-          {bookings.length === 0 ? (
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '48px 0', color: 'rgba(255,255,255,0.5)', fontSize: 15 }}>
+              <div className="spinner" style={{ marginBottom: 16 }} />
+              Loading bookings...
+            </div>
+          ) : bookings.length === 0 ? (
             <div style={{
               textAlign: 'center', padding: '48px 0',
               color: 'var(--text-3)', fontSize: 15,

@@ -150,7 +150,9 @@ export default function Contact({ isEmbedded = false }) {
     try {
       const existing = JSON.parse(localStorage.getItem('jcb_inquiries') || '[]');
       localStorage.setItem('jcb_inquiries', JSON.stringify([saved, ...existing]));
-    } catch (err) {}
+    } catch {
+      // Ignore localStorage write failure in restricted browsing modes
+    }
 
     setSubmitting(false);
     setSubmittedInquiry(saved);

@@ -217,7 +217,7 @@ export default function Calculate() {
 
   // Calculations
   const grandTotalHour = rows.reduce((sum, row) => sum + (parseFloat(row.totalHour) || 0), 0);
-  const totalAmountBase = grandTotalHour * hourlyRate;
+  const totalAmountBase = grandTotalHour * (parseFloat(hourlyRate) || 0);
   const grandTotal = totalAmountBase + (parseFloat(operatorBeta) || 0);
   const balance = grandTotal - (parseFloat(advance) || 0);
 
@@ -231,7 +231,7 @@ export default function Calculate() {
   const [isDownloadingImage, setIsDownloadingImage] = useState(false);
 
   const handlePrint = () => {
-    const element = document.getElementById('printable-receipt');
+    const element = receiptRef.current || document.getElementById('printable-receipt');
     if (!element) {
       window.print();
       return;
@@ -310,7 +310,7 @@ export default function Calculate() {
   const handleDownloadPDF = async () => {
     try {
       setIsDownloadingPdf(true);
-      const element = document.getElementById('printable-receipt');
+      const element = receiptRef.current || document.getElementById('printable-receipt');
       if (!element) {
         alert('Receipt element not found.');
         return;
@@ -371,7 +371,7 @@ export default function Calculate() {
   const handleDownloadImage = async () => {
     try {
       setIsDownloadingImage(true);
-      const element = document.getElementById('printable-receipt');
+      const element = receiptRef.current || document.getElementById('printable-receipt');
       if (!element) return;
       
       const originalShadow = element.style.boxShadow;
@@ -651,7 +651,7 @@ export default function Calculate() {
           
           {/* THE ACTUAL RECEIPT TO PRINT (SCROLLABLE ON MOBILE) */}
           <div className="receipt-scroll-wrapper">
-            <div id="printable-receipt" style={{ 
+            <div id="printable-receipt" ref={receiptRef} style={{ 
               background:'#fff', color:'#000', borderRadius:12, padding:'30px', 
               fontFamily:'Arial, sans-serif', boxShadow:'0 20px 40px rgba(0,0,0,0.4)',
               width:'550px', minWidth: '550px', margin:'0 auto'

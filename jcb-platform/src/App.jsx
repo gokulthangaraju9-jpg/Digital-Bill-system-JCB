@@ -9,9 +9,6 @@ const Dashboard     = lazy(() => import('./pages/Dashboard'));
 const BookMachine   = lazy(() => import('./pages/BookMachine'));
 const Settings      = lazy(() => import('./pages/Settings'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
-const Gallery       = lazy(() => import('./pages/Gallery'));
-const AboutUs       = lazy(() => import('./pages/AboutUs'));
-const Contact       = lazy(() => import('./pages/Contact'));
 const Calculate     = lazy(() => import('./pages/Calculate'));
 
 // ── App ────────────────────────────────────────────────────────────────────

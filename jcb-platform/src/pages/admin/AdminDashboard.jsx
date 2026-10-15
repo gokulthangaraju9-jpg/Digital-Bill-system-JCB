@@ -5,6 +5,7 @@ import {
   Settings, ArrowLeft, BarChart3, AlertCircle,
   Plus, Edit, Trash2, MessageSquare
 } from 'lucide-react';
+import LoadingScreen from '../../components/LoadingScreen';
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ export default function AdminDashboard() {
         const { machine } = await res.json();
         setMachines([machine, ...machines]);
       }
-    } catch (err) {
+    } catch {
       alert('Error adding machine');
     }
   };
@@ -92,7 +93,7 @@ export default function AdminDashboard() {
       if (res.ok) {
         setMachines(machines.filter(m => m.id !== id));
       }
-    } catch (err) {
+    } catch {
       alert('Error deleting machine');
     }
   };
@@ -103,6 +104,10 @@ export default function AdminDashboard() {
     { label: 'Pending Bookings', value: stats.pendingBookings, icon: <Calendar size={20} />, color: '#22c55e' },
     { label: 'Total Clients', value: stats.totalUsers, icon: <Users size={20} />, color: '#3b82f6' },
   ];
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div style={{
